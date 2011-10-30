@@ -1,0 +1,9 @@
+{%if order_list%}
+    <ul>
+       {% for order in order_list %}
+	 <li><a href="/app1/order/{{order.id}}">{{order.id}}</a></li>
+       {% endfor %}
+    </ul>
+{% else %}
+	<p>No Orders.</p>
+{% endif %}
