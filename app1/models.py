@@ -3,9 +3,10 @@ from django.forms import ModelForm
 # Create your models here.
 class Customer(models.Model):
 	customer_name = models.CharField(max_length = 50)
-	customer_adderss = models.CharField(max_length = 200)
+	customer_address = models.CharField(max_length = 200)
 	register_date = models.DateField()
 	email = models.EmailField()
+	notes = models.CharField(max_length = 50,blank=True,null=True)
 	def __unicode__(self):
 		return self.customer_name	
 
@@ -18,9 +19,10 @@ class Venue(models.Model):
         venue_Address = models.CharField(max_length = 200)
         venue_Phone_list = models.CharField(max_length = 20)
         venue_Manager = models.CharField(max_length = 30,blank=True)
-        stage_Heigth = models.FloatField(blank=True)
-        stage_Length = models.FloatField(blank=True)
-        stage_Depth = models.FloatField(blank=True)
+        stage_Heigth = models.FloatField(blank=True,null=True)
+        stage_Length = models.FloatField(blank=True,null=True)
+        stage_Depth = models.FloatField(blank=True,null=True)
+	notes = models.CharField(max_length = 50,blank=True,null=True)
 	def __unicode__(self):
 		return self.venue_Name
 
@@ -37,6 +39,7 @@ class MuhurthamOrder(models.Model):
 	meals_Decoration = models.BooleanField()
 	naming_Ceremony_for_Dolls = models.BooleanField()
 	elephants = models.IntegerField()
+	notes = models.CharField(max_length = 50,blank=True,null=True)
 	def __unicode__(self):
 		return str(self.date)+' - '+str(self.set_name)
 
@@ -53,6 +56,9 @@ class Reception(models.Model):
 	orchestra_Stage = models.BooleanField()
 	lightings_for_Stage = models.BooleanField()
 	garlands = models.IntegerField()
+	notes = models.CharField(max_length = 50,blank=True,null=True)
+	def __unicode__(self):
+		return str(self.date)+' - '+str(self.set_name)
 
 class HaldiFunction(models.Model):
 	date = models.DateField()
@@ -63,6 +69,9 @@ class HaldiFunction(models.Model):
 	door_Decoration = models.BooleanField()
 	pooja_Room_Decoration = models.BooleanField()
 	onake_Oralu = models.BooleanField()
+        notes = models.CharField(max_length = 50,blank=True,null=True)
+	def __unicode__(self):
+                return str(self.date)+' - '+str(self.set_name)
 
 class VaraPooja(models.Model):
 	ENTRANCE_CHOICE = (('G','Ganesha'),('K','Krishna'),)
@@ -77,6 +86,11 @@ class VaraPooja(models.Model):
 	kanth_Samanu = models.BooleanField()
 	kumbalakaye = models.BooleanField()
 	belladachhu = models.IntegerField()
+	notes = models.CharField(max_length = 50,blank=True,null=True)
+
+	def __unicode__(self):
+                return str(self.date)+' - '+str(self.set_name)
+
 
 class MakeUp(models.Model):
 	haldi_Fucntion = models.BooleanField()
@@ -85,9 +99,11 @@ class MakeUp(models.Model):
 	reception = models.BooleanField()
 	muhurtham = models.BooleanField()
 	matching_Flowers = models.BooleanField()
+	
 
 class Order(models.Model):
 	customer_details = models.ForeignKey(Customer)
+	start_date = models.DateField(blank = True,null=True)
 	muhurtham_Order = models.OneToOneField(MuhurthamOrder,blank=True,null=True)
 	reception_Order = models.OneToOneField(Reception,blank=True,null=True)
 	haldi_Order = models.OneToOneField(HaldiFunction,blank=True,null=True)

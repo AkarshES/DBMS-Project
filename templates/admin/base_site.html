@@ -6,9 +6,5 @@
 {% block branding %}
 <h1 id="site-name">{% trans 'Business Order Administration' %}</h1>
 {% endblock %}
-{% block content %}
-{%if order%}
-	{{order.customer_details.customer_name}}
-{%endif%}
-{% endblock %}
 
+{% block nav-global %}{% endblock %}
