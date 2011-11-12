@@ -1,6 +1,9 @@
 from django.db import models
 from django.forms import ModelForm
 # Create your models here.
+
+ENTRANCE_CHOICE = (('G','Ganesha'),('K','Krishna'),('O','Others'),)
+
 class Customer(models.Model):
 	customer_name = models.CharField(max_length = 50)
 	customer_address = models.CharField(max_length = 200)
@@ -30,33 +33,48 @@ class MuhurthamOrder(models.Model):
         date = models.DateField()
         set_name = models.ForeignKey(Set,related_name='+')
         mantapa = models.BooleanField()
+	mantapa_note = models.CharField(max_length = 50,blank=True,null=True)
         entrance = models.BooleanField()
+	entrance_note = models.CharField(max_length = 50,blank=True,null=True)
         gowri_Pooja_Stage_Decoration = models.BooleanField()
-        bagina_Mara = models.BooleanField()
+        gowri_Pooja_Stage_Decoration_note = models.CharField(max_length = 50,blank=True,null=True)
+	bagina_Mara = models.BooleanField()
+	bagina_Mara_note = models.CharField(max_length = 50,blank=True,null=True)
         vadhu_Welcome = models.BooleanField()
+	vadhu_Welcome_note = models.CharField(max_length = 50,blank=True,null=True)
         kashi_Yatra = models.BooleanField()
+	kashi_Yatra_note = models.CharField(max_length = 50,blank=True,null=True)
         saptapadi = models.BooleanField()
+	saptapadi_note = models.CharField(max_length = 50,blank=True,null=True)
 	meals_Decoration = models.BooleanField()
+	meals_Decoration_note = models.CharField(max_length = 50,blank=True,null=True)
 	naming_Ceremony_for_Dolls = models.BooleanField()
-	elephants = models.IntegerField()
-	notes = models.CharField(max_length = 50,blank=True,null=True)
+	naming_Ceremony_note = models.CharField(max_length = 50,blank=True,null=True)
+	elephants = models.CharField(max_length=20,blank=True,null=True)
+	order_Notes = models.CharField(max_length = 50,blank=True,null=True)
 	def __unicode__(self):
 		return str(self.date)+' - '+str(self.set_name)
 
 class Reception(models.Model):
-	ENTRANCE_CHOICE = (('G','Ganesha'),('K','Krishna'),)
 	date = models.DateField()
 	set_name = models.ForeignKey(Set,related_name='+')
 	stage_Decoration = models.BooleanField()
 	entrance = models.CharField(max_length=7,choices = ENTRANCE_CHOICE)
+	entrance_note = models.CharField(max_length = 50,blank=True,null=True)
 	door_Decoration = models.BooleanField()
+	door_Decoration_note = models.CharField(max_length = 50,blank=True,null=True)
 	carpet = models.BooleanField()
+	carpet_note = models.CharField(max_length = 50,blank=True,null=True)
 	pots = models.BooleanField()
+	pots_note = models.CharField(max_length = 50,blank=True,null=True)
 	ramp = models.BooleanField()
+	ramp_note = models.CharField(max_length = 50,blank=True,null=True)
 	orchestra_Stage = models.BooleanField()
+	orchestra_Stage_note = models.CharField(max_length = 50,blank=True,null=True)
 	lightings_for_Stage = models.BooleanField()
-	garlands = models.IntegerField()
-	notes = models.CharField(max_length = 50,blank=True,null=True)
+	lightings_note = models.CharField(max_length = 50,blank=True,null=True)
+	garlands = models.CharField(max_length=50,blank=True,null=True)
+	order_Notes = models.CharField(max_length = 50,blank=True,null=True)
 	def __unicode__(self):
 		return str(self.date)+' - '+str(self.set_name)
 
@@ -74,7 +92,6 @@ class HaldiFunction(models.Model):
                 return str(self.date)+' - '+str(self.set_name)
 
 class VaraPooja(models.Model):
-	ENTRANCE_CHOICE = (('G','Ganesha'),('K','Krishna'),)
 	date = models.DateField()
         set_name = models.ForeignKey(Set,related_name='+')
 	vara_Pooja_Welcome = models.ForeignKey(Set,related_name='+')
