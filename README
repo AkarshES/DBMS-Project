@@ -1,0 +1,10 @@
+As part of my Academic curriculum I had to make a mini project using any of the Database Management Packages and any Open Source Front End desing utility.
+
+This Project uses the folloing software packages:
+Python 2.4+
+Django 1.3.x
+Mysql  5.x
+Apache HTTP Server (In Deployment Stage)
+
+Optional Packages:
+PHPMyAdmin
