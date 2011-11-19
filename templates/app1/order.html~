@@ -1,0 +1,18 @@
+{% extends "admin/base.html" %}
+{% load i18n %}
+
+{% block title %}{{ title }} | {% trans 'Business Order Administration' %}{% endblock %}
+
+{% block branding %}
+<h1 id="site-name">{% trans 'Business Order Administration' %}</h1>
+{% endblock %}
+{% block content %}
+{%if order%}
+<table>
+	<td>
+		<p>{{order.customer_details.customer_name}}</p>
+	</td>
+</table>
+{%endif%}
+{% endblock %}
+

@@ -7,11 +7,13 @@ ENTRANCE_CHOICE = (('G','Ganesha'),('K','Krishna'),('O','Others'),)
 class Customer(models.Model):
 	customer_name = models.CharField(max_length = 50)
 	customer_address = models.CharField(max_length = 200)
+	landline = models.CharField(max_length=20,blank = True,null=True)
+	modile = models.CharField(max_length=20,blank=True,null=True)
 	register_date = models.DateField()
 	email = models.EmailField()
 	notes = models.CharField(max_length = 50,blank=True,null=True)
 	def __unicode__(self):
-		return self.customer_name	
+		return self.customer_name
 
 class Set(models.Model):
         set_Name = models.CharField(max_length = 50)
@@ -30,21 +32,21 @@ class Venue(models.Model):
 		return self.venue_Name
 
 class MuhurthamOrder(models.Model):
-        date = models.DateField()
-        set_name = models.ForeignKey(Set,related_name='+')
-        mantapa = models.BooleanField()
+	date = models.DateField()
+	set_name = models.ForeignKey(Set,related_name='+')
+	mantapa = models.BooleanField()
 	mantapa_note = models.CharField(max_length = 50,blank=True,null=True)
-        entrance = models.BooleanField()
+	entrance = models.BooleanField()
 	entrance_note = models.CharField(max_length = 50,blank=True,null=True)
-        gowri_Pooja_Stage_Decoration = models.BooleanField()
-        gowri_Pooja_Stage_Decoration_note = models.CharField(max_length = 50,blank=True,null=True)
+	gowri_Pooja_Decoration = models.BooleanField()
+	gowri_Pooja_note = models.CharField(max_length = 50,blank=True,null=True)
 	bagina_Mara = models.BooleanField()
 	bagina_Mara_note = models.CharField(max_length = 50,blank=True,null=True)
-        vadhu_Welcome = models.BooleanField()
+	vadhu_Welcome = models.BooleanField()
 	vadhu_Welcome_note = models.CharField(max_length = 50,blank=True,null=True)
-        kashi_Yatra = models.BooleanField()
+	kashi_Yatra = models.BooleanField()
 	kashi_Yatra_note = models.CharField(max_length = 50,blank=True,null=True)
-        saptapadi = models.BooleanField()
+	saptapadi = models.BooleanField()
 	saptapadi_note = models.CharField(max_length = 50,blank=True,null=True)
 	meals_Decoration = models.BooleanField()
 	meals_Decoration_note = models.CharField(max_length = 50,blank=True,null=True)
@@ -59,7 +61,7 @@ class Reception(models.Model):
 	date = models.DateField()
 	set_name = models.ForeignKey(Set,related_name='+')
 	stage_Decoration = models.BooleanField()
-	entrance = models.CharField(max_length=7,choices = ENTRANCE_CHOICE)
+	entrance = models.CharField(max_length=2,choices = ENTRANCE_CHOICE)
 	entrance_note = models.CharField(max_length = 50,blank=True,null=True)
 	door_Decoration = models.BooleanField()
 	door_Decoration_note = models.CharField(max_length = 50,blank=True,null=True)
@@ -78,9 +80,13 @@ class Reception(models.Model):
 	def __unicode__(self):
 		return str(self.date)+' - '+str(self.set_name)
 
+HALDI_ADDRESS_CHOICE = (('HA','Home Address'),('O','Other'),)
+
 class HaldiFunction(models.Model):
 	date = models.DateField()
 	set_name = models.ForeignKey(Set,related_name='+')
+	address = models.CharField(max_length=2,choices = HALDI_ADDRESS_CHOICE)
+	other_Address = models.CharField(max_length=75,blank=True,null=True)
 	kalasa = models.BooleanField()
 	gowri = models.BooleanField()
 	chappara = models.BooleanField()
@@ -96,10 +102,10 @@ class VaraPooja(models.Model):
         set_name = models.ForeignKey(Set,related_name='+')
 	vara_Pooja_Welcome = models.ForeignKey(Set,related_name='+')
 	welcome_Bouquet = models.BooleanField()
-	name_Board = models.CharField(max_length=7,choices=ENTRANCE_CHOICE)
-	door_Decoration = models.BooleanField()
+	door_Decoration = models.CharField(max_length=2,choices=ENTRANCE_CHOICE)
+	name_Board = models.BooleanField()
 	welcome_Garland = models.IntegerField()
-	vara_Pooja_Garlands = models.IntegerField()
+	garlands = models.CharField(max_length=50,blank=True,null=True)
 	kanth_Samanu = models.BooleanField()
 	kumbalakaye = models.BooleanField()
 	belladachhu = models.IntegerField()
@@ -125,7 +131,6 @@ class Order(models.Model):
 	reception_Order = models.OneToOneField(Reception,blank=True,null=True)
 	haldi_Order = models.OneToOneField(HaldiFunction,blank=True,null=True)
 	vara_Pooja = models.OneToOneField(VaraPooja,blank=True,null=True)
-	is_over = models.BooleanField()
 	venue = models.ForeignKey(Venue)
 	car_Decoration = models.BooleanField()
 	make_Up = models.OneToOneField(MakeUp,blank=True,null=True)

@@ -8,7 +8,94 @@
 {% endblock %}
 {% block content %}
 {%if order%}
-	{{order.customer_details.customer_name}}
+<div name="order">
+<table>
+	<tr>	
+		<td colspan="2" style="background-color:#FFFFFF;">
+			<p>
+				<b>Customer Name : {{order.customer_details.customer_name}}</b>
+			</p>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			{% if muhurtham %}
+				<font size = 5>Muhurtham</font></br></br>
+				<p>
+					<b>Set : {{muhurtham.set_name}}</b>
+				</p>
+				<b>Date: {{muhurtham.date}}</b></br></br>
+				{%if muhurtham.mantapa = 1%}
+					<font size = 2>Mantapa</font>	{{muhurtham.mantapa_note}}</br></br>
+				{%endif%}
+				{%if muhurtham.entrance = 1%}
+					<font size = 2>Entrance	</font>{{muhurtham.entrance_note}}</br></br>
+				{%endif%}
+				{%if muhurtham.gowri_Pooja_Decoration = 1%}
+					<font size = 2>Gowri Pooja Decoration</font>	{{muhurtham.gowri_Pooja_note}}</br></br>
+				{%endif%}
+				{%if muhurtham.bagina_Mara = 1%}
+					<font size = 2>Bagina Mara</font>	{{muhurtham.bagina_Mara_note}}</br></br>
+				{%endif%}
+				{%if muhurtham.vadhu_Welcome = 1%}
+					<font size = 2>Vadhu Welcome</font>	{{muhurtham.vadhu_Welcome_note}}</br></br>
+				{%endif%}
+				{%if muhurtham.kashi_Yatra = 1%}
+					<font size = 2>Kashi Yatra</font>	{{muhurtham.kashi_Yatra_note}}</br></br>
+				{%endif%}
+				{%if muhurtham.saptapadi = 1%}
+					<font size = 2>Saptapadi</font>	{{muhurtham.saptapadi_note}}</br></br>
+				{%endif%}
+				{%if muhurtham.meals_Decoration = 1%}
+					<font size = 2>Meals Decoration	</font>{{muhurtham.meals_Decoration_note}}</br></br>
+				{%endif%}
+				{%if muhurtham.naming_Ceremony_for_Dolls = 1%}
+					<font size = 2>Naming Ceremony for Dolls</font>	{{muhurtham.naming_Ceremony_note}}</br></br>
+				{%endif%}
+				{%if elephants != None%}
+					<font size = 2>Elephants : </font>{{muhurtham.elephants}}</br>
+				{%endif%}
+				{%if elephants != None%}
+					<font size = 2>Other Notes: </font>{{muhurtham.order_Notes}}
+				{%endif%}
+			{% endif %}
+		</td>
+		<td>
+			{% if reception %}
+				<font size = 5>Reception</font></br></br>
+				<p>
+					<b>Set : {{reception.set_name}}</b>
+				</p>
+				<b>Date: {{muhurtham.date}}</b></br></br>
+				{%if reception.stage_Decoration = 1%}
+					<font size = 2>Stage Decoration</font></br></br>
+				{%endif%}
+				{%if reception.entrance = 1%}
+					<font size = 2>Entrance</font>	{{reception.entrance_note}}</br></br>
+				{%endif%}
+				{%if reception.door_Decoration = 1%}
+					<font size = 2>Door Decoration</font>		{{reception.door_Decoration_note}}</br></br>
+				{%endif%}
+				{%if reception.carpet = 1%}
+					<font size = 2>Carpet</font>		{{reception.carpet_note}}</br></br>
+				{%endif%}
+				{%if reception.pots = 1%}
+					<font size = 2>Pots</font>		{{reception.pots_note}}</br></br>
+				{%endif%}
+				{%if reception.ramp = 1%}
+					<font size = 2>Ramp</font>	<i>{{reception.ramp_note}}<i></br></br>
+				{%endif%}
+				{%if reception.orchestra_Stage = 1%}
+					<font size = 2>Orchestra Stage</font>		{{reception.orchestra_Stage_note}}</br></br>
+				{%endif%}
+				{%if reception.lightings_for_Stage = 1%}
+					<font size = 2>Lightings for Stage</font>		{{reception.lightings_note}}</br></br>
+				{%endif%}
+			{% endif %}
+		</td>
+	</tr>
+</table>
+</div>
 {%endif%}
 {% endblock %}
 

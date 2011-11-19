@@ -8,7 +8,7 @@ class OrderAdmin(admin.ModelAdmin):
 	date_hierarchy = 'start_date'
 
 class MuhurthamOrderAdmin(admin.ModelAdmin):
-	fieldsets = ((None,{'fields':('date','set_name',('mantapa','mantapa_note'),'entrance','gowri_Pooja_Stage_Decoration','bagina_Mara','vadhu_Welcome','kashi_Yatra','saptapadi','meals_Decoration','naming_Ceremony_for_Dolls','elephants','order_Notes')}),)
+	fieldsets = ((None,{'fields':('date','set_name',('mantapa','mantapa_note'),('entrance','entrance_note'),('gowri_Pooja_Decoration','gowri_Pooja_note'),('bagina_Mara','bagina_Mara_note'),('vadhu_Welcome','vadhu_Welcome_note'),('kashi_Yatra','kashi_Yatra_note'),('saptapadi','saptapadi_note'),('meals_Decoration','meals_Decoration_note'),('naming_Ceremony_for_Dolls','naming_Ceremony_note'),'elephants','order_Notes')}),)
 	formfield_overrides = {
         models.CharField: {'widget': Textarea(attrs={'rows':1, 'cols':40})},
         models.TextField: {'widget': Textarea(attrs={'rows':1, 'cols':40})},
@@ -22,10 +22,12 @@ class ReceptionAdmin(admin.ModelAdmin):
     }
 	radio_fields = {'entrance': admin.VERTICAL}
 class HaldiFunctionAdmin(admin.ModelAdmin):
+	fieldsets = ((None,{'fields':('date','set_name',('address','other_Address'),'kalasa','gowri','chappara','door_Decoration','pooja_Room_Decoration','onake_Oralu','notes')}),)
         formfield_overrides = {
         models.CharField: {'widget': Textarea(attrs={'rows':4, 'cols':40})},
         models.TextField: {'widget': Textarea(attrs={'rows':4, 'cols':40})},
     }
+	radio_fields = {'address': admin.VERTICAL}
 
 class VaraPoojaAdmin(admin.ModelAdmin):
         formfield_overrides = {
